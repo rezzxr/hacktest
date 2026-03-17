@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>S.Y.S.T.E.M. ERROR</title>
+    <style>
+        /* CSS:#0a0a0a */
+        body { background: black; color: #00ff00; font-family: monospace; text-align: center; padding-top: 50px; }
+        #console { text-align: left; display: inline-block; width: 80%; border: 1px solid #00ff00; padding: 10px; height: 300px; overflow: hidden; }
+        .red { color: red; font-weight: bold; }
+    </style>
+</head>
+<body onclick="startHacking()">
+
+    <h1>СИСТЕМА ПЕРЕГРУЖЕНА</h1>
+    <p>Нажми на экран для диагностики...</p>
+    
+    <div id="console"></div>
+
+    <script>
+        // JS: 
+        function startHacking() {
+            const consoleBox = document.getElementById('console');
+            
+            // 
+            const phrases = [
+                "> Инициализация взлома...",
+                "> Поиск уязвимостей в Telegram...",
+                "> [!] ОБНАРУЖЕНО: 142 личных фото",
+                "> Начинаю выгрузку в DarkNet...",
+                "> Отправка GPS координат на сервер 77.81.45.35..",
+                "> ТЕЛЕФОН ЗАБЛОКИРОВАН. ПРИВЕТ ОТ BLACK HAT, ОСЕЛ!"
+            ];
+
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < phrases.length) {
+                    // Добавляем строчку в консоль
+                    consoleBox.innerHTML += phrases[i] + "<br>";
+                    
+                    // Если фраза опасная, подсветим её красным (это уже уровень!)
+                    if (phrases[i].includes("[!]")) {
+                        consoleBox.lastChild.previousSibling.className = "red";
+                    }
+                    
+                    // Телефон будет вибрировать на каждую строчку
+                    navigator.vibrate(200);
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    // Финальный "бабах" - бесконечное окно
+                    alert("КРИТИЧЕСКАЯ ОШИБКА СИСТЕМЫ!");
+                }
+            }, 1000); // 500
+        }
+    </script>
+</body>
+</html>
